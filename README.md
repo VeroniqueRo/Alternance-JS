@@ -45,9 +45,17 @@ Voici quelques fonctionnalités que nous souhaitons :
 ### Mise en place d'une page
 
 - [x] Créez une simple page HTML avec un titre.
-- [ ] Ajoutez les libraries jQuery et Bootstrap qui nous serviront pour la suite du développement.
+- [x] Ajoutez les libraries jQuery et Bootstrap qui nous serviront pour la suite du développement.
 
 Une fois que tout fonctionne, faites un premier commit ( vous aurez sûrement besoin d'initialiser le repository git ). Quelle est la commande à utiliser ? 🤔
+
+Commandes pour initialiser le repository : 
+
+    git init
+    git remote add origin URL_DU_REPOSITORY_SUR_GIT
+    git add *
+    git commit -m "Initial commit"
+    git push -u origin master
 
 ### Récupération des données et affichage simple.
 

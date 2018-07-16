@@ -192,14 +192,36 @@ let projectList = [
 
 $(document).ready(function(){
 
-    for (let i = 0; i < projectList.length; i++) {
-        $(".table").append("<tr id='row" + i + "'></tr>");
-        for (let j = 0; j < 1; j++) {
-            $("#row" + i).append("<td class='picture" + "'>" + projectList[i].picture + "</td>")
-            $("#row" + i).append("<td class='name" + "'>" + projectList[i].name + "</td>")
-            $("#row" + i).append("<td class='isActive" + "'>" + projectList[i].isActive + "</td>")
-            $("#row" + i).append("<td class='creation" + "'>" + projectList[i].creation + "</td>")
-        }
-    }
+    fillTable(projectList);
+
+        $('#search').keyup(function(){
+            let nameToFind = $(this).val() // Récupération de la valeur saisie
+            $("#data").empty();
+            let newTab = research(projectList, nameToFind);
+            fillTable(newTab);
+            $('#info').html(newTab.length + " lignes ");
+            // console.log(nameToFind);
+        });
 });
 
+function fillTable (tab) {
+    for (let i = 0; i < tab.length; i++) {
+        $("#data").append("<tr id='row" + i + "'></tr>");
+        $("#row" + i).append("<td class='picture" + "'>" + tab[i].picture + "</td>")
+        $("#row" + i).append("<td class='name" + "'>" + tab[i].name + "</td>")
+        $("#row" + i).append("<td class='isActive" + "'>" + tab[i].isActive + "</td>")
+        $("#row" + i).append("<td class='creation" + "'>" + tab[i].creation + "</td>")
+    }
+}
+
+function research(tab, val) {
+
+    let newTab=[];
+    // Compare la recherche avec le nom dans le tableau qu'elle soit en minuscule ou en majuscule
+    for (i = 0; i < tab.length; i++) {
+        if (tab[i].name.startsWith(val) || tab[i].name.startsWith(val.toUpperCase())){
+            newTab.push(tab[i]);
+        }
+    }
+    return newTab;
+}

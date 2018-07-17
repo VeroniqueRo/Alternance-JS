@@ -5,6 +5,7 @@
     <title>Page de connexion</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
     <script type="text/javascript" src="projet.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
 </head>
@@ -19,16 +20,16 @@
     </div>
     <div>
         <br>
-        <p>Nb d'enbregistrements : <span id="info"></span></p>
+        <p>Nb d'enregistrements : <span id="info"></span></p>
     </div>
     <div>
         <table  class="table table-bordered table-hover">
-            <thead class="thead-dark">
+            <thead class="thead-dark" >
             <tr>
-                <th>Image</th>
-                <th>Nom</th>
+                <th>Image </th>
+                <th>Nom <i id="triNomUp" class='fas fa-caret-up'></i><i id="triNomDown" class='fas fa-caret-down'></i></th>
                 <th>Statut du projet</th>
-                <th>Date de création</th>
+                <th>Date de création <i id="triDateUp" class='fas fa-caret-up'></i><i id="triDateDown" class='fas fa-caret-down'></i></th>
             </tr>
             </thead>
             <tbody id="data">

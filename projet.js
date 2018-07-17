@@ -189,21 +189,13 @@ let projectList = [
         "creation": "Tue Feb 25 1975 21:31:07 GMT+0100 (Central European Standard Time)"
     }
 ]
+let tabWithNewDate = convert(projectList);
 
-$(document).ready(function(){
+//*********************
+//     Fonctions
+//*********************
 
-    fillTable(projectList);
-
-        $('#search').keyup(function(){
-            let nameToFind = $(this).val() // Récupération de la valeur saisie
-            $("#data").empty();
-            let newTab = research(projectList, nameToFind);
-            fillTable(newTab);
-            $('#info').html(newTab.length + " lignes ");
-            // console.log(nameToFind);
-        });
-});
-
+// Fonction de remplissage du tableau
 function fillTable (tab) {
     for (let i = 0; i < tab.length; i++) {
         $("#data").append("<tr id='row" + i + "'></tr>");
@@ -214,9 +206,10 @@ function fillTable (tab) {
     }
 }
 
+// Fonction de filtrage sur le nom
 function research(tab, val) {
 
-    let newTab=[];
+    let newTab = [];
     // Compare la recherche avec le nom dans le tableau qu'elle soit en minuscule ou en majuscule
     for (i = 0; i < tab.length; i++) {
         if (tab[i].name.startsWith(val) || tab[i].name.startsWith(val.toUpperCase())){
@@ -225,3 +218,98 @@ function research(tab, val) {
     }
     return newTab;
 }
+
+// Converti la date et retourne un nouveau tableau
+function convert(tab) {
+    let date;
+    let result = tab;
+
+    for (i = 0; i < result.length; i++) {
+        date = new Date (result[i].creation);
+        result[i].creation = date;
+    }
+    return result;
+}
+
+// Fonction de tri par ordre croissant des dates
+function sortDate(tab) {
+
+    let result = tab;
+    for (i = 0; i < result.length; i++) {
+
+        // Compare les éléments du tableau result
+        result.sort(function(dateA,dateB){
+            if (dateA.creation < dateB.creation) {
+                return -1;
+            } else if (dateA.creation > dateB.creation) {
+                return 1;
+            } else if (dateA.creation === dateB.creation) {
+                return 0
+            }
+        });
+    }
+    return result;
+}
+
+// Fonction de tri par ordre alphabétique
+function sortNom(tab) {
+
+    let result = tab;
+    for (i = 0; i < result.length; i++) {
+
+        // Compare les éléments du tableau result
+        result.sort(function(nomA,nomB){
+            if (nomA.name < nomB.name) {
+                return -1;
+            } else if (nomA.name > nomB.name) {
+                return 1;
+            } else if (nomA.name === nomB.name) {
+                return 0
+            }
+        });
+    }
+    return result;
+}
+
+//************************
+//  Actions sur le DOM
+//************************
+$(document).ready(function(){
+
+    fillTable(projectList); // Affiche le tableau initial
+    $('#info').html(projectList.length + " lignes "); // Affiche le nombre de lignes initiales
+
+    $('#search').keyup(function(){
+        let nameToFind = $(this).val() // Récupération de la valeur saisie dans le champs recherche
+        $("#data").empty();
+        let newTab = research(tabWithNewDate, nameToFind);
+        fillTable(newTab);
+        $('#info').html(newTab.length + " lignes ");
+    });
+
+    // Actions de tri sur les dates
+    $('#triDateUp').click(function(){
+        $("#data").empty();
+        let tabSortedUp = sortDate(tabWithNewDate);// Tri du plus vieux au plus ancien
+        fillTable(tabSortedUp);
+    });
+
+    $('#triDateDown').click(function(){
+        $("#data").empty();
+        let tabSortedDown = sortDate(tabWithNewDate).reverse();// Tri du plus récent au plus ancien
+        fillTable(tabSortedDown);
+    });
+
+    // Actions de tri sur les noms
+    $('#triNomUp').click(function(){
+        $("#data").empty();
+        let tabSortedUp = sortNom(tabWithNewDate);// Tri de A à Z
+        fillTable(tabSortedUp);
+    });
+
+    $('#triNomDown').click(function(){
+        $("#data").empty();
+        let tabSortedDown = sortNom(tabWithNewDate).reverse();// Tri de Z à A
+        fillTable(tabSortedDown);
+    });
+});

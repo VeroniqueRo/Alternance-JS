@@ -199,7 +199,7 @@ let tabWithNewDate = convert(projectList);
 function fillTable (tab) {
     for (let i = 0; i < tab.length; i++) {
         $("#data").append("<tr id='row" + i + "'></tr>");
-        $("#row" + i).append("<td class='picture" + "'>" + tab[i].picture + "</td>")
+        $("#row" + i).append("<td class='picture" + "'>" + "<img src=" + tab[i].picture + ">" + "</td>")
         $("#row" + i).append("<td class='name" + "'>" + tab[i].name + "</td>")
         $("#row" + i).append("<td class='isActive" + "'>" + tab[i].isActive + "</td>")
         $("#row" + i).append("<td class='creation" + "'>" + tab[i].creation + "</td>")
@@ -301,15 +301,18 @@ $(document).ready(function(){
     });
 
     // Actions de tri sur les noms
-    $('#triNomUp').click(function(){
-        $("#data").empty();
-        let tabSortedUp = sortNom(tabWithNewDate);// Tri de A à Z
-        fillTable(tabSortedUp);
-    });
-
-    $('#triNomDown').click(function(){
-        $("#data").empty();
-        let tabSortedDown = sortNom(tabWithNewDate).reverse();// Tri de Z à A
-        fillTable(tabSortedDown);
+    let bool = true;
+    $('#triNom').click(function(){
+        console.log(bool);
+        if (bool) {
+            $("#data").empty();
+            let tabSortedUp = sortNom(tabWithNewDate);// Tri de A à Z
+            fillTable(tabSortedUp);
+        } else {
+            $("#data").empty();
+            let tabSortedDown = sortNom(tabWithNewDate).reverse();// Tri de Z à A
+            fillTable(tabSortedDown);
+        }
+        bool = !bool;
     });
 });

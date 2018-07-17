@@ -12,22 +12,68 @@
 <body>
 <div class="container-fluid">
     <div>
-        <h2>Liste des projets</h2>
+        <h1>Liste des projets</h1>
     </div>
-    <div class="input-group col-sm-4">
-        <input type="text" placeholder="Rechercher un nom" id="search" class="form-control input-lg">
-        <i class="icon icon-search"></i>
+    <div class="navbar navbar-light bg-light">
+        <form class="form-inline">
+            <div class="input-group-prepend">
+                <span class="btn btn-default"><i class="fa fa-search"></i></span>
+            </div>
+            <input id="search" class="form-control mr-sm-2" type="search" placeholder="Rechercher un nom" aria-label="Search">
+            <!-- Button trigger modal -->
+            <button type="button" class="btn btn-info" data-toggle="modal" data-target="#nouveauProjet">
+                Nouveau Projet
+            </button>
+        </form>
     </div>
-    <div>
-        <br>
-        <p>Nb d'enregistrements : <span id="info"></span></p>
+    <!-- Modal -->
+    <div class="modal fade" id="nouveauProjet" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-nom" id="exampleModalLabel">Nouveau projet</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="form-group">
+                            <label for="new-name" class="col-form-label">Nom du projet :</label>
+                            <input type="text" class="form-control" id="new-name">
+                        </div>
+                        <div class="form-group">
+                            <label for="new-creation" class="col-form-label">date de création :</label>
+                            <input type="date" class="form-control" id="new-creation">
+                        </div>
+                        <div class="form-group">
+                            <label for="new-picture" class="col-form-label">Image du projet :</label>
+                            <input type="text" class="form-control" id="new-picture" value="http://placehold.it/32x32">
+                        </div>
+                        <div class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input" id="defaultUnchecked">
+                            <label class="custom-control-label" for="defaultUnchecked">Projet actif ? </label>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
+                    <button type="button" class="btn btn-info">Créer le projet</button>
+                </div>
+            </div>
+        </div>
     </div>
-    <div>
+
+    <div class="container-fluid">
+        <div>
+            <br>
+            <p>Nb d'enregistrements : <span id="info"></span></p>
+        </div>
         <table  class="table table-bordered table-hover">
-            <thead class="thead-dark" >
+            <thead class="thead-light" >
             <tr>
                 <th>Image </th>
-                <th>Nom <i id="triNomUp" class='fas fa-caret-up'></i><i id="triNomDown" class='fas fa-caret-down'></i></th>
+                <th>Nom <i id="triNom" class='fa fa-sort'></i></th>
                 <th>Statut du projet</th>
                 <th>Date de création <i id="triDateUp" class='fas fa-caret-up'></i><i id="triDateDown" class='fas fa-caret-down'></i></th>
             </tr>

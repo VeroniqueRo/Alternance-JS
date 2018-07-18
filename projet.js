@@ -202,6 +202,7 @@ let tabWithNewDate = convert(projectList);
 // Fonction de remplissage du tableau
 function fillTable (tab) {
     for (let i = 0; i < tab.length; i++) {
+
         // Affiche oui ou non à la place de true ou false
         let isActive = tab[i].isActive;
         if (isActive){
@@ -209,11 +210,12 @@ function fillTable (tab) {
         } else {
             isActive = "Inactif";
         }
+
         $("#data").append("<tr id='row" + i + "'></tr>");
-        $("#row" + i).append("<td class='picture" + "'>" + "<img src=" + tab[i].picture + ">" + "</td>")
-        $("#row" + i).append("<td class='name" + "'>" + tab[i].name + "</td>")
-        $("#row" + i).append("<td class='isActive" + "'>" + isActive + "</td>")
-        $("#row" + i).append("<td class='creation" + "'>" + tab[i].creation + "</td>")
+        $("#row" + i).append("<td class='picture' style='text-align:center'" + ">" + "<img src=" + tab[i].picture + ">" + "</td>")
+        $("#row" + i).append("<td class='name'" + ">" + tab[i].name + "</td>")
+        $("#row" + i).append("<td class='isActive' style='text-align:center'" + "'>" + isActive + "</td>")
+        $("#row" + i).append("<td class='creation'" + ">" + tab[i].creation + "</td>")
     }
 }
 
@@ -282,12 +284,25 @@ function sortNom(tab) {
     return result;
 }
 
-// Créer un nouveau projet
-function createNewProject() {
-    let name = $('#name').val();
-    let image =
-        let
-}
+// Ajoute un nouveau projet
+// function createNewProject() {
+//     let _id=1;
+//     let name = $('#new-name').val();
+//     let creation = $('#new-creation').val();
+//     let picture = $('#new-picture').val();
+//     let isActive = $('#checkbox').checked;
+//     // let  =
+//
+//     let newProject = {
+//         _id : _id+1,
+//         isActive : true,
+//         picture : picture,
+//         name : name,
+//         creation : creation}
+//
+//     console.log(newProject);
+//     // return newProject;
+// }
 
 //************************
 //  Actions sur le DOM
@@ -333,4 +348,11 @@ $(document).ready(function(){
         }
         bool = !bool;// remplace le booléen par son contraire
     });
+
+    // // Ajout d'un projet
+    // $('#ajoutProjet').click(function(){
+    //     let newTab = createNewProject();
+    //     // $("#data").empty();
+    //     // fillTable(newTab);
+    // })
 });

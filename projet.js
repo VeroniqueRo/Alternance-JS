@@ -212,7 +212,7 @@ function fillTable (tab) {
         }
 
         $("#data").append("<tr id='row" + i + "'></tr>");
-        $("#row" + i).append("<td class='picture' style='text-align:center'" + ">" + "<img src=" + tab[i].picture + ">" + "</td>")
+        $("#row" + i).append("<td class='picture' style='text-align:center'" + ">" + "<img src=" + tab[i].picture + "></td>")
         $("#row" + i).append("<td class='name'" + ">" + tab[i].name + "</td>")
         $("#row" + i).append("<td class='isActive' style='text-align:center'" + "'>" + isActive + "</td>")
         $("#row" + i).append("<td class='creation'" + ">" + tab[i].creation + "</td>")
@@ -264,6 +264,14 @@ function sortDate(tab) {
     return result;
 }
 
+// 2ème façon de trier les dates
+function sortByDate(tab) {
+    tab.sort(function (date1, date2) {
+        return date1.creation - date2.creation;
+    })
+    return tab;
+}
+
 // Fonction de tri par ordre alphabétique
 function sortNom(tab) {
 
@@ -285,24 +293,29 @@ function sortNom(tab) {
 }
 
 // Ajoute un nouveau projet
-// function createNewProject() {
-//     let _id=1;
-//     let name = $('#new-name').val();
-//     let creation = $('#new-creation').val();
-//     let picture = $('#new-picture').val();
-//     let isActive = $('#checkbox').checked;
-//     // let  =
-//
-//     let newProject = {
-//         _id : _id+1,
-//         isActive : true,
-//         picture : picture,
-//         name : name,
-//         creation : creation}
-//
-//     console.log(newProject);
-//     // return newProject;
-// }
+function createNewProject() {
+
+    // Test pour ajouter la date du jour
+    // let today = new Date();
+    // console.log(today);
+    // $("#new-creation").val(today);
+
+    let idValue=1;
+    let nameValue = $('#new-name').val().toUpperCase();
+    let creationValue = new Date($('#new-creation').val());
+    let pictureValue = $('#new-picture').val();
+    let boxValue = $('#defaultUnchecked').prop("checked");
+
+    let newProject = {
+        _id : idValue+1,
+        isActive : boxValue,
+        picture : pictureValue,
+        name : nameValue,
+        creation : creationValue }
+
+    // console.log(newProject);
+    return newProject;
+}
 
 //************************
 //  Actions sur le DOM
@@ -336,7 +349,7 @@ $(document).ready(function(){
     // Actions de tri sur les noms en un seul bouton
     let bool = true;
     $('#triNom').click(function(){
-        console.log(bool);
+        // console.log(bool);
         if (bool) {
             $("#data").empty();
             let tabSortedUp = sortNom(tabWithNewDate);// Tri de A à Z
@@ -349,10 +362,12 @@ $(document).ready(function(){
         bool = !bool;// remplace le booléen par son contraire
     });
 
-    // // Ajout d'un projet
-    // $('#ajoutProjet').click(function(){
-    //     let newTab = createNewProject();
-    //     // $("#data").empty();
-    //     // fillTable(newTab);
-    // })
+    // Ajout d'un projet
+    $('#ajoutProjet').click(function(){
+        let newProject = createNewProject();
+        tabWithNewDate.push(newProject);
+        $("#data").empty();
+        fillTable(tabWithNewDate);
+        $("#modalForm")[0].reset();
+    })
 });

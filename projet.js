@@ -1,3 +1,7 @@
+//***********************************
+//     Déclaration de variables
+//***********************************
+
 let projectList = [
     {
         "_id": "5b3e3da860e7c6eeb88e3ceb",
@@ -198,10 +202,17 @@ let tabWithNewDate = convert(projectList);
 // Fonction de remplissage du tableau
 function fillTable (tab) {
     for (let i = 0; i < tab.length; i++) {
+        // Affiche oui ou non à la place de true ou false
+        let isActive = tab[i].isActive;
+        if (isActive){
+            isActive = "Actif";
+        } else {
+            isActive = "Inactif";
+        }
         $("#data").append("<tr id='row" + i + "'></tr>");
         $("#row" + i).append("<td class='picture" + "'>" + "<img src=" + tab[i].picture + ">" + "</td>")
         $("#row" + i).append("<td class='name" + "'>" + tab[i].name + "</td>")
-        $("#row" + i).append("<td class='isActive" + "'>" + tab[i].isActive + "</td>")
+        $("#row" + i).append("<td class='isActive" + "'>" + isActive + "</td>")
         $("#row" + i).append("<td class='creation" + "'>" + tab[i].creation + "</td>")
     }
 }
@@ -271,6 +282,13 @@ function sortNom(tab) {
     return result;
 }
 
+// Créer un nouveau projet
+function createNewProject() {
+    let name = $('#name').val();
+    let image =
+        let
+}
+
 //************************
 //  Actions sur le DOM
 //************************
@@ -300,7 +318,7 @@ $(document).ready(function(){
         fillTable(tabSortedDown);
     });
 
-    // Actions de tri sur les noms
+    // Actions de tri sur les noms en un seul bouton
     let bool = true;
     $('#triNom').click(function(){
         console.log(bool);
@@ -313,6 +331,6 @@ $(document).ready(function(){
             let tabSortedDown = sortNom(tabWithNewDate).reverse();// Tri de Z à A
             fillTable(tabSortedDown);
         }
-        bool = !bool;
+        bool = !bool;// remplace le booléen par son contraire
     });
 });

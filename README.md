@@ -319,7 +319,7 @@ Voici un exemple d'interface à laquelle vous [pourriez parvenir](http://recordi
 
 ## Ajouter un nouveau projet.
 
-- [ ] Faites un formulaire d'ajout d'un projet, je vous propose pour cela d'utiliser les [fenêtres modales de bootstrap](https://getbootstrap.com/docs/4.0/components/modal/) afin d'avoir le formulaire dans une modale.
+- [X] Faites un formulaire d'ajout d'un projet, je vous propose pour cela d'utiliser les [fenêtres modales de bootstrap](https://getbootstrap.com/docs/4.0/components/modal/) afin d'avoir le formulaire dans une modale.
 
 Voici un exemple de résultats :
 
@@ -330,7 +330,7 @@ Voici un exemple de résultats :
 
 ### 1) Initialiser une application Vue.
 
-- [ ] Commençons par créer une application VueJS, pour cela utilisons l'interface en ligne de commande officielle `vue-cli`.
+- [X] Commençons par créer une application VueJS, pour cela utilisons l'interface en ligne de commande officielle `vue-cli`.
 
 Si ce n'est pas fait, il faut d'abord l'installer avec npm :
 
@@ -340,12 +340,15 @@ npm install --global vue-cli
 
 **Question :** Rappeler ce qu'est npm et pourquoi nous utilisons l'option --global ?
 
-*Votre réponse :*
+*Votre réponse : 
+* NPM est le Package Manager de Node.js. C'est un gestionnaire de taches qui permet d'exécuter des scripts.
+* L'option "--global" permet l'installation du package "vue-cli" globalement. C'est important de le faire car on veux pouvoir utiliser ce package pour plusieurs applications.
+Si le package n'est utile que pour une seule application, c'est préférable de ne l'installer que localement das le dossier de cette application.
 
-- [ ] Créez maintenant l'application :
+- [X] Créez maintenant l'application :
 
 ```
-vue init webpack [NOM_PROJET]
+vue init webpack-simple [NOM_PROJET]
 ```
 
 Des questions vont vous être posées, voici un exemple de choix :
@@ -356,6 +359,8 @@ Des questions vont vous être posées, voici un exemple de choix :
 * Quels sont des bons réflexes à avoir quand vous télécharger un nouveau projet ? Quels fichiers regarder ? Avant même de commencer à lancer l'application et sans regarder le code vous pouvez apprendre plein de choses.
 
 *Votre réponse :*
+* Lire le README.md qui peut contenir une description de l'application
+
 
 * Si vous regardez le fichier `README.md` du projet vous voyez que trois commandes sont indiquées, quel est le but de chacune ?
 
